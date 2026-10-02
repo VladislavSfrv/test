@@ -21,7 +21,7 @@ if (searchInput && searchQuery) {
 }
 
 // ================= 3. АУДИО ДВИЖОК =================
-const clickSound = new Audio('audio/click.mp3'); 
+const clickSound = new Audio(new URL('../audio/click.mp3', import.meta.url).href);
 
 function playClickSound(): void { 
    clickSound.currentTime = 0; 
@@ -67,7 +67,7 @@ function renderSkins(): void {
       
       card.innerHTML = ` 
     <div class="mc-card__preview">
-        <img src="${skin.img}" alt="${skin.name}" class="mc-card__img">
+        <img src="${import.meta.env.BASE_URL}${skin.img}" alt="${skin.name}" class="mc-card__img">
     </div>
     <h3 class="mc-card__name">${skin.name}</h3>
     <span class="mc-card__tag mc-card__tag--${skin.tag}">${skin.tagText}</span>
@@ -136,7 +136,7 @@ skinsGrid?.addEventListener('click', (e: MouseEvent) => {
       const fileName = target.getAttribute('data-file'); 
       
       if (fileName) {
-         const fileUrl = `./images/${fileName}`; 
+         const fileUrl = `${import.meta.env.BASE_URL}images/${fileName}`;
 
          const link = document.createElement('a'); 
          link.href = fileUrl; 
